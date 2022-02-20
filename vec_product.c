@@ -6,12 +6,17 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:50:09 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/20 23:51:45 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/21 04:11:15 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec.h"
 #include <math.h>
+
+double	vec_len(t_vec v)
+{
+	return (sqrt(vec_dot(v, v)));
+}
 
 double	vec_dot(t_vec v1, t_vec v2)
 {

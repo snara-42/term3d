@@ -6,24 +6,30 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:40:56 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/20 17:03:02 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/21 05:01:09 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term3d.h"
 #include "vec.h"
 #include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
 
-#define N_FIELD 3
-
-int	main(int ac, char *av[])
+int	main(int ac, const char *av[])
 {
 	static t_vec_array	vecs = {};
 
 	if (ac < 2)
-		exit(1);
-	scan_file(av[1], &vecs);
-	display(&vecs);
+		str_exit("usage: ./term3d files...", EXIT_FAILURE);
+	parse_files(&vecs, &av[1]);
+	adjust_zoom(&vecs);
+	srand(time(NULL));
+	while (1)
+	{
+		display(&vecs);
+		vec_rotate(&vecs, M_PI / 42, (t_e_axis)(rand() % N_AXIS));
+		usleep(42000);
+	}
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:42:02 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/20 20:18:37 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/21 02:54:21 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <strings.h>
 # include <errno.h>
 
-# define SCREEN_X 64
-# define SCREEN_Y 32
+# define SCREEN_X 128
+# define SCREEN_Y 64
 
 typedef struct s_screen
 {

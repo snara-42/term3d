@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:42:02 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/22 12:39:15 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/22 12:48:55 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ typedef struct s_screen
 {
 	size_t		size_x;
 	size_t		size_y;
-	signed char	scr[SCREEN_Y * SCREEN_X];
+	signed char	*scr;
 }	t_screen;
+
+void	set_screen(t_screen *screen);
 
 #endif /* SCREEN_H */

@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:40:56 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/22 12:42:49 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/22 12:55:49 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	display(t_vec_array *vecs)
 	size_t		i;
 	t_screen	screen;
 
-	screen = (t_screen){SCREEN_X, SCREEN_Y, {}};
+	set_screen(&screen);
 	i = 0;
 	while (i < vecs->len)
 	{

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_handler.c                                    :+:      :+:    :+:   */
+/*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunyu <mfunyu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:43:57 by mfunyu            #+#    #+#             */
-/*   Updated: 2022/02/22 18:09:07 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/22 18:21:52 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
+#include "key_hook.h"
 #include "term3d.h"
 #include <stdlib.h>
 
 static void	event_zoom(t_vec_array *vecs, t_screen *screen, int zoom)
 {
-	static int X;
+	static int	X;
 
 	X = X + zoom;
 	if (X > ZOOM_LIMIT)

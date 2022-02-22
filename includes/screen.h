@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:42:02 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/21 05:10:18 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/22 12:39:15 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_screen
 {
 	size_t		size_x;
 	size_t		size_y;
-	signed char	scr[SCREEN_Y][SCREEN_X];
+	signed char	scr[SCREEN_Y * SCREEN_X];
 }	t_screen;
 
 #endif /* SCREEN_H */

@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:40:56 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/21 23:42:06 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/22 12:42:49 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	fill_screen(t_screen *screen, t_vec *vec)
 	const size_t	y = (screen->size_y / 2) + vec->y;
 
 	if (is_in_screen(screen, vec))
-		screen->scr[y][x]++;
+		screen->scr[y * screen->size_x + x]++;
 }
 
 void	draw_screen(t_screen *screen)
@@ -45,7 +45,7 @@ void	draw_screen(t_screen *screen)
 		x = 0;
 		while (x < screen->size_x)
 		{
-			printf("%c", ' ' + screen->scr[y][x]);
+			printf("%c", ' ' + screen->scr[y * screen->size_x + x]);
 			x++;
 		}
 		printf("\n");

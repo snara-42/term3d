@@ -13,6 +13,7 @@
 #include "term3d.h"
 #include "screen.h"
 #include "vec.h"
+#include "hook.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -30,6 +31,7 @@ int	main(int ac, const char *av[])
 	srand(time(NULL));
 	while (1)
 	{
+		key_hook(&key_handler, &vecs, &screen);
 		display(&vecs, &screen);
 		vec_rotate(&vecs, M_PI / 42, (t_e_axis)(rand() % N_AXIS));
 		usleep(42000);

@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:42:02 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/22 12:48:55 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/22 13:44:24 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,6 @@
 # include <strings.h>
 # include <errno.h>
 # include <sys/ioctl.h>
-
-# ifndef SCREEN_X
-#  define SCREEN_X 128
-# endif
-# ifndef SCREEN_Y
-#  define SCREEN_Y 64
-# endif
 
 typedef struct s_screen
 {

@@ -20,6 +20,7 @@
 # include <string.h>
 # include <strings.h>
 # include <errno.h>
+# include <sys/ioctl.h>
 
 # ifndef SCREEN_X
 #  define SCREEN_X 128

@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:40:56 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/22 12:55:49 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/22 13:30:32 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,21 @@ void	draw_screen(t_screen *screen)
 	}
 }
 
-void	display(t_vec_array *vecs)
+void	clear_screen(t_screen *screen)
+{
+	bzero(screen->scr, screen->size_y * screen->size_x + 1);
+}
+
+void	display(t_vec_array *vecs, t_screen *screen)
 {
 	size_t		i;
-	t_screen	screen;
 
-	set_screen(&screen);
+	clear_screen(screen);
 	i = 0;
 	while (i < vecs->len)
 	{
-		fill_screen(&screen, &vecs->ptr[i]);
+		fill_screen(screen, &vecs->ptr[i]);
 		i++;
 	}
-	draw_screen(&screen);
+	draw_screen(screen);
 }

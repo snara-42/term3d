@@ -6,7 +6,7 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:40:56 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/23 16:22:16 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/23 18:25:40 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #define N_FIELD 3
 
-static void	expand(t_vec_array *vecs, ssize_t size)
+static void	expand_alloc(t_vec_array *vecs, ssize_t size)
 {
 	vecs->len += size;
 	if (vecs->len < 0)
@@ -33,7 +33,7 @@ void	parse_file(t_vec_array *vecs, const char *filename)
 	ifs = or_exit(fopen(filename, "r"));
 	while (!feof(ifs))
 	{
-		expand(vecs, 1);
+		expand_alloc(vecs, 1);
 		next = &vecs->ptr[vecs->len - 1];
 		if (fscanf(ifs, "%lf,%lf,%lf\n", &next->x, &next->y, &next->z)
 			!= N_FIELD || ferror(ifs))

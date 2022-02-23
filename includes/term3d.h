@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:42:02 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/22 13:33:51 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/23 16:51:23 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	str_exit(const char *str, int status);
 void	*or_exit(void *ptr);
 
 void	parse_files(t_vec_array *vecs, const char **filename);
-void	adjust_zoom(t_vec_array *vecs, t_screen *screen);
+void	adjust_zoom_to_screen(t_vec_array *vecs, t_screen *screen);
 void	display(t_vec_array *vecs, t_screen *screen);
 
 #endif /* TERM3D_H */

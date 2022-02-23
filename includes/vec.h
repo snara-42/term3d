@@ -6,7 +6,7 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:24:24 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/21 04:18:26 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/23 17:14:12 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	vec_foreach(t_vec_array *vecs, t_func_v f_vec, double arg);
 double	vec_max_min(t_vec_array *vecs, t_func_d f_cmp, t_func_d f_vec);
 
 void	vec_rotate(t_vec_array *vecs, double angle, t_e_axis axis);
+void	vec_zoom(t_vec_array *vecs, double multiplier);
 
 #endif /* VEC_H */

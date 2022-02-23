@@ -6,13 +6,17 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:40:56 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/22 13:30:32 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/23 16:19:43 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term3d.h"
 #include "vec.h"
 #include "screen.h"
+
+#define CLEAR "\x1b[2H"
+#define N_CHARS 8
+#define CHARS " .:-~+*@###"
 
 static bool	is_in_screen(t_screen *screen, t_vec *vec)
 {
@@ -26,10 +30,11 @@ static bool	is_in_screen(t_screen *screen, t_vec *vec)
 
 static void	fill_screen(t_screen *screen, t_vec *vec)
 {
-	const size_t	x = (screen->size_x / 2) + vec->x * 2;
-	const size_t	y = (screen->size_y / 2) + vec->y;
+	const size_t	x = (screen->size_x / 2.) + vec->x * 2;
+	const size_t	y = (screen->size_y / 2.) + vec->y;
 
-	if (is_in_screen(screen, vec))
+	if (is_in_screen(screen, vec)
+		&& screen->scr[y * screen->size_x + x] < N_CHARS)
 		screen->scr[y * screen->size_x + x]++;
 }
 
@@ -38,14 +43,14 @@ void	draw_screen(t_screen *screen)
 	size_t		x;
 	size_t		y;
 
-	printf("\x1b[2H");
+	printf(CLEAR);
 	y = 0;
 	while (y < screen->size_y)
 	{
 		x = 0;
 		while (x < screen->size_x)
 		{
-			printf("%c", ' ' + screen->scr[y * screen->size_x + x]);
+			printf("%c", CHARS[screen->scr[y * screen->size_x + x]]);
 			x++;
 		}
 		printf("\n");

@@ -6,7 +6,7 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:50:09 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/21 04:15:02 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/23 16:28:29 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,5 @@ static t_func_v	vec_rot(enum e_axis axis)
 
 void	vec_rotate(t_vec_array *vecs, double angle, t_e_axis axis)
 {
-	const t_func_v	func = vec_rot(axis);
-
-	vec_foreach(vecs, func, angle);
+	vec_foreach(vecs, vec_rot(axis), angle);
 }

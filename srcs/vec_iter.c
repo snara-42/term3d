@@ -6,7 +6,7 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:40:56 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/23 16:25:34 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/23 21:50:00 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ double	vec_max_min(t_vec_array *vecs, double (*f_cmp)(), double (*f_vec)())
 }
 
 void	vec_foreach(t_vec_array *vecs, t_vec (*f_vec)(), double arg)
+{
+	size_t			i;
+	t_vec			*v;
+
+	i = 0;
+	while (i < vecs->len)
+	{
+		v = &vecs->ptr[i];
+		*v = f_vec(*v, arg);
+		i++;
+	}
+}
+
+void	vec_foreach_vec(t_vec_array *vecs, t_vec (*f_vec)(), t_vec arg)
 {
 	size_t			i;
 	t_vec			*v;

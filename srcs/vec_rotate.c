@@ -6,7 +6,7 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:50:09 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/23 16:28:29 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/23 21:56:43 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,18 @@ t_vec	vec_rot_z(t_vec v, double angle)
 	});
 }
 
-static t_func_v	vec_rot(enum e_axis axis)
+t_vec	vec_rot_axes(t_vec v, t_vec angle)
 {
-	const t_func_v	fp_rotate[N_AXIS] = {vec_rot_x, vec_rot_y, vec_rot_z};
-
-	return (fp_rotate[axis]);
+	if (angle.x)
+		v = vec_rot_x(v, angle.x);
+	if (angle.y)
+		v = vec_rot_y(v, angle.y);
+	if (angle.z)
+		v = vec_rot_z(v, angle.z);
+	return (v);
 }
 
-void	vec_rotate(t_vec_array *vecs, double angle, t_e_axis axis)
+void	vec_rotate(t_vec_array *vecs, t_vec angle)
 {
-	vec_foreach(vecs, vec_rot(axis), angle);
+	vec_foreach_vec(vecs, vec_rot_axes, angle);
 }

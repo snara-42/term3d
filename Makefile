@@ -1,6 +1,6 @@
 NAME	:= term3d
 CC		:= gcc
-CFLAGS:= -Wall -Wextra -Werror
+CFLAGS	:= -Wall -Wextra -Werror -MMD -MP
 
 SRCS_DIR:= srcs/
 SRCS	:= $(shell find . -type f -name "*.c" | xargs basename)
@@ -22,7 +22,7 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(INCLUDES)
 
 $(OBJS_DIR):
-	@mkdir $@
+	@mkdir -p $@
 
 clean	:
 	$(RM) -R $(OBJS_DIR)
@@ -31,3 +31,6 @@ fclean	: clean
 	$(RM) $(NAME)
 
 re	: fclean all
+
+debug	: CFLAGS += -fsanitize=address -fsanitize=undefined -g3 
+debug	: all

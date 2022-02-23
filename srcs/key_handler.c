@@ -6,36 +6,69 @@
 /*   By: mfunyu <mfunyu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:43:57 by mfunyu            #+#    #+#             */
-/*   Updated: 2022/02/22 18:21:52 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/24 02:33:45 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "screen.h"
 #include "key_hook.h"
-#include "term3d.h"
-#include <stdlib.h>
+#include "vec.h"
 
 static void	event_zoom(t_vec_array *vecs, t_screen *screen, int zoom)
 {
-	static int	X;
+	static int	zoom_level = 0;
 
-	X = X + zoom;
-	if (X > ZOOM_LIMIT)
-		X = ZOOM_LIMIT;
-	if (X < 0)
-		X = 0;
-	adjust_zoom(vecs, screen, X * ZOOM_SPEED);
+	(void)screen;
+	zoom_level += zoom;
+	if (zoom_level > ZOOM_LIMIT)
+		zoom_level = ZOOM_LIMIT;
+	else if (zoom_level < -ZOOM_LIMIT)
+		zoom_level = -ZOOM_LIMIT;
+	else
+		vec_zoom(vecs, pow(ZOOM_SPEED, zoom));
+}
+
+static void	event_move(t_vec_array *vecs, t_screen *screen, int key)
+{
+	const double	speed = fmin(screen->size_x, screen->size_y)
+	/ (int []){-8, 8}[!strchr("hki", key)];
+
+	if (strchr("hl", key))
+		vec_foreach_vec(vecs, vec_add, (t_vec){speed, 0, 0});
+	if (strchr("jk", key))
+		vec_foreach_vec(vecs, vec_add, (t_vec){0, speed, 0});
+	if (strchr("ui", key))
+		vec_foreach_vec(vecs, vec_add, (t_vec){0, 0, speed});
+}
+
+void	vec_keep_rotate(t_vec_array *vecs, t_e_axis axis, int direction)
+{
+	static t_vec	angle = {0, 0, ROTATE_SPEED};
+
+	if (AXIS_X == axis)
+		angle = (t_vec){direction * ROTATE_SPEED, 0, 0};
+	else if (AXIS_Y == axis)
+		angle = (t_vec){0, direction * ROTATE_SPEED, 0};
+	else if (AXIS_Z == axis)
+		angle = (t_vec){0, 0, direction * ROTATE_SPEED};
+	else
+		vec_rotate(vecs, (t_vec)
+		{angle.x * direction, angle.y * direction, angle.z * direction});
 }
 
 int	key_handler(int key, t_vec_array *vecs, t_screen *screen)
 {
 	if (key == 'q' || key == ESC)
-	{
-		printf("term3d exitting ...\n");
-		exit(EXIT_SUCCESS);
-	}
-	if (key == '+' || key == '-')
-	{
+		str_exit("term3d exiting ...\n", EXIT_SUCCESS);
+	if (strchr("+-", key))
 		event_zoom(vecs, screen, 44 - key);
-	}
+	if (strchr("hljkui", key))
+		event_move(vecs, screen, key);
+	if (strchr("xyz", key))
+		vec_keep_rotate(vecs, (t_e_axis)(key - 'x'), 1);
+	if (strchr("XYZ", key))
+		vec_keep_rotate(vecs, (t_e_axis)(key - 'X'), -1);
+	if (strchr(" .", key))
+		vec_keep_rotate(vecs, AXIS_Z, 0);
 	return (0);
 }

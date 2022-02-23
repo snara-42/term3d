@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:16:01 by mfunyu            #+#    #+#             */
-/*   Updated: 2022/02/22 13:26:13 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/22 21:02:32 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	set_screen_size(t_screen *screen)
 void	set_screen(t_screen *screen)
 {
 	set_screen_size(screen);
-	screen->scr = (signed char *)or_exit(
-			malloc((screen->size_y * screen->size_x + 1)
-				* sizeof(signed char)));
+	screen->scr = (typeof(screen->scr))or_exit(
+			realloc(screen->scr,
+				sizeof(*screen->scr) * (screen->size_y * screen->size_x + 1)));
 }

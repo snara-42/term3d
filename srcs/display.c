@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:40:56 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/23 16:19:43 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/24 02:44:51 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #define CLEAR "\x1b[2H"
 #define N_CHARS 8
-#define CHARS " .:-~+*@###"
+#define CHARS " .:-~+**###"
 
 static bool	is_in_screen(t_screen *screen, t_vec *vec)
 {

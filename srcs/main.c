@@ -6,7 +6,7 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 18:10:50 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/23 23:05:04 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/24 02:49:37 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+
+#define SAME_SPEED 1
 
 int	main(int ac, const char *av[])
 {
@@ -31,7 +33,7 @@ int	main(int ac, const char *av[])
 	{
 		display(&vecs, &screen);
 		key_hook(&key_handler, &vecs, &screen);
-		vec_keep_rotate(&vecs, N_AXIS, 1);
+		vec_keep_rotate(&vecs, N_AXIS, SAME_SPEED);
 		usleep(42000);
 	}
 	return (EXIT_SUCCESS);

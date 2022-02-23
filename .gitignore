@@ -54,5 +54,7 @@ dkms.conf
 *~
 .*
 *
+!*.3d
+!*.{c,h}
 !Makefile
 !.gitignore

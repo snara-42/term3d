@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:40:56 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/21 00:01:32 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/23 16:22:16 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ void	parse_file(t_vec_array *vecs, const char *filename)
 	{
 		expand(vecs, 1);
 		next = &vecs->ptr[vecs->len - 1];
-		if (fscanf(ifs, "%lf,%lf,%lf\n", &next->x, &next->y, &next->z) != N_FIELD
-			|| ferror(ifs))
+		if (fscanf(ifs, "%lf,%lf,%lf\n", &next->x, &next->y, &next->z)
+			!= N_FIELD || ferror(ifs))
 			str_exit("file format error\n", EXIT_FAILURE);
 	}
-	printf("len %zu,error %d,eof %d\n", vecs->len, ferror(ifs), feof(ifs));
 	fclose(ifs);
 }
 

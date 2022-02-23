@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:44:25 by mfunyu            #+#    #+#             */
-/*   Updated: 2022/02/23 18:00:16 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/23 18:38:45 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "term3d.h"
 
-# define ESC 27
+# define ESC '\x1b'
 # define ERASE_LINE "\e[2K"
 
 # define ZOOM_LIMIT 42
-# define ZOOM_SPEED 2.0
+# define ZOOM_SPEED 1.414213562
 # define ROTATE_SPEED M_PI / 42
 
 void	key_hook(int (*funct_ptr)(), void *param1, void *param2);

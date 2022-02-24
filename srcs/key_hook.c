@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:00:49 by mfunyu            #+#    #+#             */
-/*   Updated: 2022/02/22 18:23:51 by mfunyu           ###   ########.fr       */
+/*   Updated: 2022/02/24 11:08:54 by mfunyu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@
 
 static int	getch(void)
 {
-	struct termios	oldt;
-	struct termios	newt;
+	struct termios	old_termptr;
+	struct termios	new_termptr;
+	int				old_flags;
 	int				ch;
-	int				oldf;
 
-	tcgetattr(STDIN_FILENO, &oldt);
-	newt = oldt;
-	newt.c_lflag &= ~(ICANON | ECHO);
-	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-	oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
-	fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+	tcgetattr(STDIN_FILENO, &old_termptr);
+	new_termptr = old_termptr;
+	new_termptr.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr(STDIN_FILENO, TCSANOW, &new_termptr);
+	old_flags = fcntl(STDIN_FILENO, F_GETFL, 0);
+	fcntl(STDIN_FILENO, F_SETFL, old_flags | O_NONBLOCK);
 	ch = getchar();
-	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-	fcntl(STDIN_FILENO, F_SETFL, oldf);
+	tcsetattr(STDIN_FILENO, TCSANOW, &old_termptr);
+	fcntl(STDIN_FILENO, F_SETFL, old_flags);
 	if (ch != EOF)
 		return (ch);
 	return (-1);

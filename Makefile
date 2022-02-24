@@ -3,7 +3,8 @@ CC		:= gcc
 CFLAGS	:= -Wall -Wextra -Werror -MMD -MP
 
 SRCS_DIR:= srcs/
-SRCS	:= $(shell find . -type f -name "*.c" | xargs basename)
+SRCS	:= display.c exit.c key_handler.c key_hook.c main.c parse.c screen.c vec_iter.c vec_op.c vec_product.c vec_rotate.c zoom.c
+# SRCS	:= $(shell find . -type f -name "*.c" | xargs basename)
 OBJS_DIR:= objs/
 OBJS	:= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 INCLUDES:= includes/
@@ -22,7 +23,7 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(INCLUDES)
 
 $(OBJS_DIR):
-	@mkdir -p $@
+	mkdir -p $@
 
 clean	:
 	$(RM) -R $(OBJS_DIR)

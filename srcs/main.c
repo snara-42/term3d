@@ -6,16 +6,13 @@
 /*   By: subaru <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 18:10:50 by subaru            #+#    #+#             */
-/*   Updated: 2022/02/24 02:49:37 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/24 23:51:48 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "screen.h"
 #include "vec.h"
 #include "key_hook.h"
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
 
 #define SAME_SPEED 1
 

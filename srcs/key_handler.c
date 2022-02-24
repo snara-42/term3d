@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:43:57 by mfunyu            #+#    #+#             */
-/*   Updated: 2022/02/24 02:33:45 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/24 23:54:44 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,23 @@ static void	event_zoom(t_vec_array *vecs, t_screen *screen, int zoom)
 
 static void	event_move(t_vec_array *vecs, t_screen *screen, int key)
 {
-	const double	speed = fmin(screen->size_x, screen->size_y)
-	/ (int []){-8, 8}[!strchr("hki", key)];
+	const double	speed = fmin(screen->size_x, screen->size_y) * MOVE_SPEED;
 
-	if (strchr("hl", key))
+	if (key == 'l')
 		vec_foreach_vec(vecs, vec_add, (t_vec){speed, 0, 0});
-	if (strchr("jk", key))
+	if (key == 'h')
+		vec_foreach_vec(vecs, vec_add, (t_vec){-speed, 0, 0});
+	if (key == 'j')
 		vec_foreach_vec(vecs, vec_add, (t_vec){0, speed, 0});
-	if (strchr("ui", key))
+	if (key == 'k')
+		vec_foreach_vec(vecs, vec_add, (t_vec){0, -speed, 0});
+	if (key == 'u')
 		vec_foreach_vec(vecs, vec_add, (t_vec){0, 0, speed});
+	if (key == 'i')
+		vec_foreach_vec(vecs, vec_add, (t_vec){0, 0, -speed});
 }
 
-void	vec_keep_rotate(t_vec_array *vecs, t_e_axis axis, int direction)
+void	vec_keep_rotate(t_vec_array *vecs, t_e_axis axis, double direction)
 {
 	static t_vec	angle = {0, 0, ROTATE_SPEED};
 

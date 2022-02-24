@@ -6,7 +6,7 @@
 /*   By: mfunyu <mfunyu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:44:25 by mfunyu            #+#    #+#             */
-/*   Updated: 2022/02/24 02:27:43 by subaru           ###   ########.fr       */
+/*   Updated: 2022/02/24 23:41:10 by subaru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 
 # define ZOOM_LIMIT 42
 # define ZOOM_SPEED 1.414213562
-# define ROTATE_SPEED 0.1
+# define ROTATE_SPEED 0.042
+# define MOVE_SPEED 0.1
 
 void	key_hook(int (*funct_ptr)(), void *param1, void *param2);
 int		key_handler(int key, t_vec_array *vecs, t_screen *screen);

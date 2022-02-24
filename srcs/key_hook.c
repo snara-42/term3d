@@ -17,7 +17,7 @@
 #include <termios.h>
 #include <stdbool.h>
 
-static bool	kbhit(void)
+static int	getch(void)
 {
 	struct termios	oldt;
 	struct termios	newt;
@@ -34,18 +34,16 @@ static bool	kbhit(void)
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 	fcntl(STDIN_FILENO, F_SETFL, oldf);
 	if (ch != EOF)
-	{
-		ungetc(ch, stdin);
-		return (true);
-	}
-	return (false);
+		return (ch);
+	return (-1);
 }
 
 void	key_hook(int (*funct_ptr)(), void *param1, void *param2)
 {
 	int	key;
 
-	if (kbhit())
+	key = getch();
+	if (key > 0)
 	{
 		key = getchar();
 		printf(ERASE_LINE);
